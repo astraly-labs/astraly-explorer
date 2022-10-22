@@ -1,0 +1,42 @@
+.hex {
+  width: 80px;
+  display: inline-block;
+  margin: 0 5px;
+  filter: url('#goo');
+  color: #9d69de;
+  position: absolute;
+  top: 2px;
+  left: -3px;
+  --link-logo: url('https://www.pierre-giraud.com/html-css/cours-complet/imgs/logo-html5-css3.png');
+}
+
+.hex::before {
+  content: '';
+  background: var(--link-logo);
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 115%; /* 100%/cos(30)  */
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+}
+
+.hexBis {
+  width: 84px;
+  display: inline-block;
+  margin: 0 5px;
+  filter: url('#goo');
+  color: #9d69de;
+  position: relative;
+}
+
+.hexBis::before {
+  content: '';
+  background-color: #9d69de;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 115%; /* 100%/cos(30)  */
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+}

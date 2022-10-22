@@ -1,0 +1,158 @@
+.planet_svg__star,
+.planet-dark_svg__star,
+.lightning_svg__star {
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+
+  &__top {
+    animation-name: 'star-top';
+  }
+
+  &__left {
+    animation-name: 'star-left';
+  }
+
+  &__right {
+    animation-name: 'star-right';
+  }
+}
+
+@keyframes star-top {
+  50% {
+    transform: translateX(-50px) translateY(40px);
+  }
+}
+
+@keyframes star-left {
+  50% {
+    transform: translateX(30px) translateY(-20px);
+  }
+}
+
+@keyframes star-right {
+  50% {
+    transform: translateX(-30px) translateY(-5px);
+  }
+}
+
+.lightning_svg {
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+  animation-name: 'planet-big';
+}
+
+.planet_svg__planet,
+.planet-dark_svg__planet,
+.lightning_svg__planet {
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+
+  &__big,
+  .lightning_svg {
+    animation-name: 'planet-big';
+  }
+
+  &__small {
+    animation-name: 'planet-small';
+  }
+}
+
+@keyframes planet-big {
+  50% {
+    transform: translateX(10px) translateY(-5px);
+  }
+}
+
+@keyframes planet-small {
+  50% {
+    transform: translateX(30px) translateY(20px);
+  }
+}
+
+.BaseButton {
+  .icon-right {
+    @apply transition-all;
+  }
+  &:hover {
+    .icon-right {
+      transform: translateX(4px) translateY(-1px);
+    }
+  }
+
+  .animatedIcon {
+    .animatedIconOutline,
+    .animatedIconSolid {
+      @apply transition-all;
+    }
+    .animatedIconSolid {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .animatedIconOutline {
+      opacity: 0;
+    }
+    .animatedIconSolid {
+      opacity: 1;
+    }
+  }
+}
+
+.from-right {
+  &-enter {
+    transform: translateX(100%);
+  }
+
+  &-enter-active {
+    transform: translateX(0);
+    transition: all 0.3s ease-in-out;
+  }
+
+  &-exit-active {
+    transform: translateX(200%);
+    transition: all 0.3s ease-in-out;
+    height: 0 !important;
+  }
+}
+
+.home-heading__animation {
+  &-exit-active {
+    transition: all 0.3s ease-in-out;
+    height: 0 !important;
+
+    p,
+    .buttons,
+    h1 {
+      transition: all 0s ease-in-out;
+      opacity: 0;
+    }
+
+    .planets,
+    .bg-line {
+      transition: all 0.3s ease-in-out;
+      transform: translateY(400px);
+    }
+  }
+}
+
+.home-title__animation {
+  &-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
+  }
+
+  &-exit-active {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 0;
+  }
+}

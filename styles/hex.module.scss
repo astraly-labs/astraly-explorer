@@ -1,0 +1,21 @@
+.hex {
+  display: inline-block;
+  filter: url('#gooAvatar');
+  background: transparent;
+  border-radius: 100%;
+
+  &::before {
+    content: '';
+    background-color: #9d69de;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 115%; /* 100%/cos(30)  */
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    background-image: var(--link-logo);
+    position: relative;
+    z-index: 0;
+    @apply shadow-purpleDark;
+  }
+}

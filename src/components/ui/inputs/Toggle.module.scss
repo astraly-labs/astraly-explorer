@@ -1,0 +1,53 @@
+.baseToggle {
+  @apply transition;
+  height: 34px;
+  width: 64px;
+  border-radius: 100px;
+  background: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  @apply border-2 border-primary;
+
+  &Item {
+    @apply transition text-white;
+    width: 30px;
+    height: 30px;
+    background: #c89cff;
+    border-radius: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &Active {
+    @apply bg-primary;
+
+    .baseToggleItem {
+      @apply bg-white;
+      transform: translateX(30px);
+    }
+  }
+}
+
+:global(.dark) {
+  .baseToggle {
+    background: #2c2a30;
+    @apply border-2 border-primary;
+    &Item {
+      @apply bg-primaryClearBg;
+      opacity: 0.1;
+      top: 0;
+      left: 0;
+    }
+
+    &Active {
+      @apply bg-white;
+      .baseToggleItem {
+        @apply bg-primary;
+      }
+    }
+  }
+}

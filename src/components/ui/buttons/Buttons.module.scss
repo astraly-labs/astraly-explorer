@@ -1,0 +1,158 @@
+.baseButton {
+  @apply font-heading text-white relative cursor-pointer flex items-center justify-center py-3 transition-all;
+  font-size: 16px;
+  line-height: 1.31;
+  background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
+  box-shadow: 0 20px 35px rgba(55, 0, 99, 0.2);
+  border-radius: 16px;
+  gap: 10px;
+  height: 55px;
+  span {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    top: 2px;
+  }
+
+  svg,
+  img {
+    transform: translateY(-1px);
+  }
+
+  &::before {
+    @apply transition-all;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    z-index: -1;
+    content: '';
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+    background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
+    border-radius: 18px;
+  }
+
+  &::after {
+    @apply transition-all;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
+    border-radius: 18px;
+    opacity: 0;
+  }
+
+  &.baseButtonSmall {
+    @apply pt-2 pb-1.5;
+    font-size: 12px;
+    height: auto;
+    border-radius: 8px;
+    span {
+      top: 0;
+    }
+  }
+
+  &.baseButtonXSmall {
+    padding: 3px 16px 0;
+    font-size: 12px;
+    height: auto;
+    border-radius: 8px;
+    span {
+      top: 0;
+    }
+  }
+
+  &.baseButtonDisabled {
+    @apply text-primary;
+    opacity: 0.5;
+    background: none;
+    pointer-events: none;
+    border: 1px solid #9f24ff;
+    &::before {
+      display: none;
+    }
+  }
+
+  &.baseButtonInline {
+    @apply inline-flex;
+  }
+
+  &Icon {
+    @apply transition-all;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) !important;
+    z-index: 1;
+    &Solid {
+      opacity: 0;
+    }
+  }
+
+  &White {
+    @apply text-primary;
+    background: white;
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      @apply text-white border border-white;
+      background: transparent;
+    }
+  }
+
+  &Type {
+    &__secondary {
+      @apply text-primary;
+      background: white;
+      border-radius: 16px;
+
+      &:hover {
+        @apply text-white;
+        border-radius: 18px;
+      }
+    }
+  }
+
+  &Medium {
+    @apply text-14 h-12;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+
+    &::before {
+      background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
+    }
+
+    .baseButtonIcon {
+      &Solid {
+        opacity: 1;
+      }
+
+      &Outline {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+:global(.dark) {
+  .baseButton {
+    background: #2C2A30;
+
+    &.baseButtonDisabled {
+      @apply text-white;
+    }
+  }
+}

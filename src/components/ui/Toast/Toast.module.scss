@@ -1,0 +1,28 @@
+.toastNotification {
+  @apply p-4;
+  pointer-events: all;
+  background: #faf3ff;
+  box-shadow: 0 20px 35px rgba(55, 0, 99, 0.2);
+  border-radius: 16px;
+}
+
+.toastNotificationContainer {
+  height: 90px;
+}
+
+.toastContainer {
+  position: fixed;
+  right: 0;
+  padding: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 100000;
+  overflow: hidden;
+}
+
+:global(.dark) {
+  .toastNotification {
+    @apply bg-gray3;
+  }
+}
