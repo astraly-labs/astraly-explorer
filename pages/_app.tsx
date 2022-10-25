@@ -10,10 +10,10 @@ import { configureChains, chain, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { InjectedConnector } from "wagmi/connectors/injected";
+import Web3ReactManager from "../src/components/Web3ReactManager";
 
-function getLibrary(provider: Provider | undefined) {
-  debugger;
-  return new Provider(provider);
+function getLibrary(starknetProvider: Provider | undefined) {
+  return new Provider(starknetProvider);
 }
 
 const Web3ReactProviderDefault = dynamic(
@@ -25,30 +25,30 @@ const Web3ReactProviderDefault = dynamic(
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
-
-  debugger;
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, provider } = configureChains(
     [chain.goerli],
     [
       alchemyProvider({ apiKey: "uXpxHR8fJBH3fjLJpulhY__jXbTGNjN7" }),
       // publicProvider(),
     ]
   );
+
   const client = createClient({
     autoConnect: true,
     connectors: [new InjectedConnector({ chains })],
     provider,
-    webSocketProvider,
   });
   return (
     <ReduxProvider store={store}>
       <StarknetReactProvider getLibrary={getLibrary}>
         <Web3ReactProviderDefault getLibrary={getLibrary}>
-          <Layout>
-            <WagmiConfig client={client}>
-              <Component {...pageProps} />
-            </WagmiConfig>
-          </Layout>
+          <Web3ReactManager>
+            <Layout>
+              <WagmiConfig client={client}>
+                <Component {...pageProps} />
+              </WagmiConfig>
+            </Layout>
+          </Web3ReactManager>
         </Web3ReactProviderDefault>
       </StarknetReactProvider>
     </ReduxProvider>

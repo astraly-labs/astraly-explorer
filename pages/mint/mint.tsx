@@ -12,7 +12,7 @@ import useContract from "../../src/hooks/useContract";
 import { BADGE_CONTRACT_ABI } from "../../src/contracts/abi";
 
 export default function Mint() {
-  const { account: starknetAccount } = useStarknetReact();
+  const { account } = useStarknetReact();
   const { getContract } = useContract();
 
   const { address: ethereumAddress, isConnected } = useAccount();
@@ -23,7 +23,6 @@ export default function Mint() {
 
   async function mintBadge() {
     try {
-      debugger;
       if (!isConnected) await connectAsync();
       const tokenAddress = "0x326c977e6efc84e512bb9c30f76e30c160ed06fb"; // LINK
       // const tokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F"; // DAI
@@ -35,12 +34,11 @@ export default function Mint() {
       );
       connector.getSigner();
       const userMinBalance = "0x1";
-      debugger;
       const proof = await encodeCallArgs(
         provider,
         signer,
         ethereumAddress,
-        starknetAccount?.address as string,
+        account?.address as string,
         tokenAddress,
         blockNumber,
         storageSlot,
@@ -48,7 +46,6 @@ export default function Mint() {
       );
       console.log(proof);
 
-      debugger;
       let badgeContract = await getContract("0x0", BADGE_CONTRACT_ABI);
 
       await badgeContract.mint(proof);

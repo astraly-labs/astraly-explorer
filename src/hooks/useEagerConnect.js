@@ -1,5 +1,5 @@
 import { useStarknetReact } from '@web3-starknet-react/core'
-import { SUPPORTED_WALLETS } from 'constants/wallet'
+import { SUPPORTED_WALLETS } from '../constants/wallet';
 import { useEffect, useMemo, useState } from 'react'
 import { argentXConnector } from '../connectors'
 
