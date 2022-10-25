@@ -49,7 +49,7 @@ export async function encodeCallArgs(
   token: string,
   blockNumber: number,
   storageSlot: number,
-  balance: string
+  minBalance: string
 ) {
   // eslint-disable-next-line no-undef
   if (!ethereum) {
@@ -59,8 +59,7 @@ export async function encodeCallArgs(
   }
 
   const number = "0x" + blockNumber.toString(16);
-  const block = (await ethereum.send("eth_getBlockByNumber", [number, false]))
-    .result;
+  const block = await ethereum.send("eth_getBlockByNumber", [number, false]);
 
   console.log(block);
 
@@ -71,19 +70,23 @@ export async function encodeCallArgs(
   starknetAccount = stripHexPrefix(starknetAccount);
   const stateRoot = stripHexPrefix(block.stateRoot);
 
-  const userCurrentBalance = (
-    await ethereum.send("eth_getStorageAt", [token, storageKey, number])
-  ).result;
+  const userCurrentBalance = await ethereum.send("eth_getStorageAt", [
+    token,
+    storageKey,
+    number,
+  ]);
   /// TODO: check denomination
-  if (!toBN(userCurrentBalance).eq(toBN(balance))) {
+  if (!toBN(userCurrentBalance).gte(toBN(minBalance))) {
     console.log("User balance doesn't match");
     return;
   }
 
   // Request storage state proof
-  const proof = (
-    await ethereum.send("eth_getProof", [token, [storageKey], number])
-  ).result;
+  const proof = await ethereum.send("eth_getProof", [
+    token,
+    [storageKey],
+    number,
+  ]);
   const accountProof = proof.accountProof;
   const storageProof = proof.storageProof[0];
   const [accountProofsConcat, accountProofSizesWords, accountProofSizesBytes] =
@@ -114,7 +117,7 @@ export async function encodeCallArgs(
   console.log(proof);
 
   console.log(toBN(starknetAccount));
-  console.log(toBN(balance));
+  console.log(toBN(minBalance));
   console.log(parseInt(ethereum.chainId, 16)); // chain id
   console.log(blockNumber);
   console.log(accountProof.length);
@@ -144,7 +147,7 @@ export async function encodeCallArgs(
 
   return [
     toBN(starknetAccount),
-    toBN(balance),
+    toBN(minBalance),
     parseInt(ethereum.chainId, 16), // chain id
     blockNumber,
     accountProof.length,

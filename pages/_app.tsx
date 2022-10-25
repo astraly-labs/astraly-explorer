@@ -8,8 +8,11 @@ import Layout from "./layout";
 import { useStore } from "../src/stores/reduxStore";
 import { configureChains, chain, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { InjectedConnector } from "wagmi/connectors/injected";
 
 function getLibrary(provider: Provider | undefined) {
+  debugger;
   return new Provider(provider);
 }
 
@@ -23,12 +26,17 @@ const Web3ReactProviderDefault = dynamic(
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
 
-  const { provider, webSocketProvider } = configureChains(
+  debugger;
+  const { chains, provider, webSocketProvider } = configureChains(
     [chain.goerli],
-    [publicProvider()]
+    [
+      alchemyProvider({ apiKey: "uXpxHR8fJBH3fjLJpulhY__jXbTGNjN7" }),
+      // publicProvider(),
+    ]
   );
   const client = createClient({
     autoConnect: true,
+    connectors: [new InjectedConnector({ chains })],
     provider,
     webSocketProvider,
   });
