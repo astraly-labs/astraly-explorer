@@ -10,6 +10,7 @@ import { encodeCallArgs } from "./proof_generation";
 import { AlchemyProvider } from "@ethersproject/providers";
 import useContract from "../../src/hooks/useContract";
 import { BADGE_CONTRACT_ABI } from "../../src/contracts/abi";
+import { useEffect } from "react";
 
 export default function Mint() {
   const { account } = useStarknetReact();
@@ -19,11 +20,14 @@ export default function Mint() {
   const connector = new InjectedConnector();
   const { connect } = useConnect({ connector });
   const provider: AlchemyProvider = useProvider();
-  const { data: signer } = useSigner();
+  // const { data: signer } = useSigner();
+
+  useEffect(() => {
+    if (!isConnected) connect();
+  });
 
   async function mintBadge() {
     try {
-      if (!isConnected) connect();
       const tokenAddress = "0x326c977e6efc84e512bb9c30f76e30c160ed06fb"; // LINK
       // const tokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F"; // DAI
       const blockNumber = await provider.getBlockNumber();
@@ -32,7 +36,7 @@ export default function Mint() {
         ethereumAddress as string,
         provider
       );
-      connector.getSigner();
+      const signer = await connector.getSigner();
       const userMinBalance = "0x1";
       const proof = await encodeCallArgs(
         provider,
@@ -46,12 +50,12 @@ export default function Mint() {
       );
       console.log(proof);
 
-      debugger;
-      const contract = await getContract("0x0", BADGE_CONTRACT_ABI);
-      debugger;
+      const contract = await getContract(
+        "0x020b6d41d2df761dfa4c9f123fc0d68b55f45dfd4266124befc2500352387a91",
+        BADGE_CONTRACT_ABI
+      );
       await contract.invoke("mint", proof);
     } catch (error) {
-      debugger;
       console.error(error);
     }
   }
@@ -61,7 +65,7 @@ export default function Mint() {
       <div>
         <BaseButton onClick={mintBadge} medium={true}>
           <WalletIcon />
-          Add ASTR to Wallet
+          Mint
           <Chevron className={"ml-3 icon-right"} />
         </BaseButton>
       </div>

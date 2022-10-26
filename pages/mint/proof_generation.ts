@@ -117,8 +117,6 @@ export async function encodeCallArgs(
   const recoveryParam: 0 | 1 = signature.recoveryParam === 0 ? 0 : 1;
   const Ry = secp256k1.decompressPoint(Rx, recoveryParam);
 
-  debugger;
-
   let args = [];
   args.push(toFelt(padString(starknetAccount)));
   args.push(toFelt(proof.balance));
@@ -127,7 +125,6 @@ export async function encodeCallArgs(
   args.push(toFelt(storageProof.proof.length));
 
   const code_hash_ = packInts64(proof.codeHash);
-  debugger;
   // args.push(code_hash_.length);
   args.push(code_hash_);
 

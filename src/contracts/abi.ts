@@ -338,11 +338,11 @@ export const BADGE_CONTRACT_ABI = [
         type: "felt",
       },
       {
-        name: "account_proof_len",
+        name: "account_proof_length",
         type: "felt",
       },
       {
-        name: "storage_proof_len",
+        name: "storage_proof_length",
         type: "felt",
       },
       {
@@ -378,7 +378,7 @@ export const BADGE_CONTRACT_ABI = [
         type: "felt*",
       },
       {
-        name: "message_byte_len",
+        name: "message_byte_length",
         type: "felt",
       },
       {
