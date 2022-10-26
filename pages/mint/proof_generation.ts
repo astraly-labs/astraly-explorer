@@ -1,41 +1,48 @@
-import { sha3Raw, stripHexPrefix, toHex, padLeft, toBN } from "web3-utils";
+import { sha3Raw, stripHexPrefix, toHex, padLeft } from "web3-utils";
 import { utils } from "ethers";
 import { secp256k1 } from "@zoltu/ethereum-crypto";
 
 import * as BN from "bn.js";
+import { toBN, toFelt } from "starknet/dist/utils/number";
 
-function packInts64(input: string): Array<BN> {
+function packInts64(input: string): Array<string> {
   const array = [];
   for (const s of input.match(/.{1,16}/g)!) {
-    array.push(toBN(s));
+    array.push(toFelt(padString(s)));
   }
   return array;
 }
 
-function packBigInt3(input: string): Array<BN> {
+function padString(input: string): string {
+  if (input.startsWith("0x")) return input;
+
+  return "0x" + input;
+}
+
+function packBigInt3(input: string): Array<string> {
   const a = [];
   const base = toBN(2).pow(toBN(86));
-  let num = toBN(input);
+  let num = toBN(padString(input));
   for (const _ of [0, 1, 2]) {
     // how to create for loop with unused variable?
     const quotient = num.div(base);
     const residue = num.mod(base);
     num = quotient;
-    a.push(residue);
+    a.push(toFelt(residue));
   }
   return a;
 }
 
 function encodeProof(proof: Array<string>) {
-  const flatProof: Array<BN> = [];
+  const flatProof: Array<string> = [];
   const flatProofSizesBytes = [];
   const flatProofSizesWords = [];
 
   for (const proofElement of proof) {
-    const packedProofElement: Array<BN> = packInts64(proofElement);
+    const packedProofElement: Array<string> = packInts64(proofElement);
     flatProof.push(...packedProofElement);
-    flatProofSizesBytes.push(stripHexPrefix(proofElement).length / 2);
-    flatProofSizesWords.push(packedProofElement.length);
+    flatProofSizesBytes.push(toFelt(stripHexPrefix(proofElement).length / 2));
+    flatProofSizesWords.push(toFelt(packedProofElement.length));
   }
 
   return [flatProof, flatProofSizesWords, flatProofSizesBytes];
@@ -60,8 +67,6 @@ export async function encodeCallArgs(
 
   const number = "0x" + blockNumber.toString(16);
   const block = await ethereum.send("eth_getBlockByNumber", [number, false]);
-
-  console.log(block);
 
   // Prepare message attestation contents
   let pos = padLeft(stripHexPrefix(account.toLowerCase()), 64);
@@ -97,12 +102,12 @@ export async function encodeCallArgs(
   // Sign attestation message
   const message = starknetAccount + stateRoot + stripHexPrefix(storageKey);
   const paddedMessage = "000000" + message + "00000000";
-  const packedMessage: Array<BN> = [
+  let packedMessage: Array<string> = [
     toBN("1820989616068650357"),
     toBN("7863376661560845668"),
     toBN("2327628128951822181"),
     toBN("4182209287050756096"),
-  ];
+  ].map((x) => toFelt(x));
   packedMessage.push(...packInts64(paddedMessage));
   const rawSignature = await signer.signMessage(paddedMessage);
   const signature = utils.splitSignature(rawSignature);
@@ -111,68 +116,63 @@ export async function encodeCallArgs(
   const Rx = BigInt("0x" + toBN(signature.r).toJSON());
   const recoveryParam: 0 | 1 = signature.recoveryParam === 0 ? 0 : 1;
   const Ry = secp256k1.decompressPoint(Rx, recoveryParam);
-  console.log("Rx", Rx);
-  console.log("Ry", Ry);
 
-  console.log(proof);
+  debugger;
 
-  console.log(toBN(starknetAccount));
-  console.log(toBN(minBalance));
-  console.log(parseInt(ethereum.chainId, 16)); // chain id
-  console.log(blockNumber);
-  console.log(accountProof.length);
-  console.log(storageProof.proof.length);
-  console.log(packInts64(stripHexPrefix(token))); // address
-  console.log(packInts64(stripHexPrefix(block.stateRoot)));
-  console.log(packInts64(stripHexPrefix(proof.codeHash)));
-  console.log(packInts64(padLeft(stripHexPrefix(toHex(storageSlot)), 64)));
-  console.log(packBigInt3(stripHexPrefix(proof.storageHash)));
-  // Signed state signature
-  console.log(packedMessage);
-  console.log(132); // message_byte_len
-  console.log(packBigInt3(stripHexPrefix(Rx.toString())));
-  console.log(packBigInt3(stripHexPrefix(Ry.toString())));
-  console.log(packBigInt3(stripHexPrefix(signature.s)));
-  console.log(signature.recoveryParam + 27);
-  console.log(packInts64(stripHexPrefix(storageProof.key)));
-  console.log(packInts64(stripHexPrefix(storageProof.value)));
-  // Account proof
-  console.log(accountProofsConcat);
-  console.log(accountProofSizesWords);
-  console.log(accountProofSizesBytes);
-  // Storage proof
-  console.log(storageProofsConcat);
-  console.log(storageProofSizesWords);
-  console.log(storageProofSizesBytes);
+  let args = [];
+  args.push(toFelt(padString(starknetAccount)));
+  args.push(toFelt(proof.balance));
+  args.push(toFelt(proof.nonce));
+  args.push(toFelt(accountProof.length));
+  args.push(toFelt(storageProof.proof.length));
 
-  return [
-    toBN(starknetAccount),
-    toBN(minBalance),
-    parseInt(ethereum.chainId, 16), // chain id
-    blockNumber,
-    accountProof.length,
-    storageProof.proof.length,
-    packInts64(stripHexPrefix(token)), // address
-    packInts64(stripHexPrefix(block.stateRoot)),
-    packInts64(stripHexPrefix(proof.codeHash)),
-    packInts64(padLeft(stripHexPrefix(toHex(storageSlot)), 64)),
-    packBigInt3(stripHexPrefix(proof.storageHash)),
-    // Signed state signature
-    packedMessage,
-    132, // message_byte_len
-    packBigInt3(stripHexPrefix(Rx.toString())),
-    packBigInt3(stripHexPrefix(Ry.toString())),
-    packBigInt3(stripHexPrefix(signature.s)),
-    signature.recoveryParam + 27,
-    packInts64(stripHexPrefix(storageProof.key)),
-    packInts64(stripHexPrefix(storageProof.value)),
-    // Account proof
-    accountProofsConcat,
-    accountProofSizesWords,
-    accountProofSizesBytes,
-    // Storage proof
-    storageProofsConcat,
-    storageProofSizesWords,
-    storageProofSizesBytes,
-  ];
+  const code_hash_ = packInts64(proof.codeHash);
+  debugger;
+  // args.push(code_hash_.length);
+  args.push(code_hash_);
+
+  const storage_slot_ = packInts64(
+    padLeft(stripHexPrefix(toHex(storageSlot)), 64)
+  );
+  // args.push(storage_slot_.length);
+  args.push(storage_slot_);
+
+  const storage_hash_ = packBigInt3(proof.storageHash);
+  // args.push(storage_hash_.length);
+  args.push(storage_hash_);
+
+  args.push(packedMessage);
+  args.push(132);
+
+  const R_x_ = packBigInt3(Rx.toString());
+  // args.push(R_x_.length);
+  args.push(R_x_);
+
+  const R_y_ = packBigInt3(Ry.toString());
+  // args.push(R_y_.length);
+  args.push(R_y_);
+
+  const s_ = packBigInt3(signature.s);
+  // args.push(s_.length);
+  args.push(s_);
+
+  args.push(toFelt(signature.recoveryParam + 27));
+
+  const storage_key_ = packInts64(storageProof.key);
+  // args.push(storage_key_.length);
+  args.push(storage_key_);
+
+  const storage_value_ = packInts64(storageProof.value);
+  // args.push(storage_value_.length);
+  args.push(storage_value_);
+
+  args.push(accountProofsConcat);
+  args.push(accountProofSizesWords);
+  args.push(accountProofSizesBytes);
+
+  args.push(storageProofsConcat);
+  args.push(storageProofSizesWords);
+  args.push(storageProofSizesBytes);
+
+  return args;
 }

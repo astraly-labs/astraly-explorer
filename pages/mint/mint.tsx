@@ -17,13 +17,13 @@ export default function Mint() {
 
   const { address: ethereumAddress, isConnected } = useAccount();
   const connector = new InjectedConnector();
-  const { connectAsync } = useConnect({ connector });
+  const { connect } = useConnect({ connector });
   const provider: AlchemyProvider = useProvider();
   const { data: signer } = useSigner();
 
   async function mintBadge() {
     try {
-      if (!isConnected) await connectAsync();
+      if (!isConnected) connect();
       const tokenAddress = "0x326c977e6efc84e512bb9c30f76e30c160ed06fb"; // LINK
       // const tokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F"; // DAI
       const blockNumber = await provider.getBlockNumber();
@@ -46,10 +46,12 @@ export default function Mint() {
       );
       console.log(proof);
 
-      let badgeContract = await getContract("0x0", BADGE_CONTRACT_ABI);
-
-      await badgeContract.mint(proof);
+      debugger;
+      const contract = await getContract("0x0", BADGE_CONTRACT_ABI);
+      debugger;
+      await contract.invoke("mint", proof);
     } catch (error) {
+      debugger;
       console.error(error);
     }
   }
