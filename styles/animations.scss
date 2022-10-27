@@ -5,15 +5,15 @@
   animation-duration: 20s;
 
   &__top {
-    animation-name: 'star-top';
+    animation-name: "star-top";
   }
 
   &__left {
-    animation-name: 'star-left';
+    animation-name: "star-left";
   }
 
   &__right {
-    animation-name: 'star-right';
+    animation-name: "star-right";
   }
 }
 
@@ -38,7 +38,7 @@
 .lightning_svg {
   animation-iteration-count: infinite;
   animation-duration: 20s;
-  animation-name: 'planet-big';
+  animation-name: "planet-big";
 }
 
 .planet_svg__planet,
@@ -49,11 +49,11 @@
 
   &__big,
   .lightning_svg {
-    animation-name: 'planet-big';
+    animation-name: "planet-big";
   }
 
   &__small {
-    animation-name: 'planet-small';
+    animation-name: "planet-small";
   }
 }
 
@@ -155,4 +155,10 @@
     position: absolute;
     left: 0;
   }
+}
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
 }

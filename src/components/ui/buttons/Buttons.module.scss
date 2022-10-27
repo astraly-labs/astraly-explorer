@@ -1,5 +1,5 @@
 .baseButton {
-  @apply font-heading text-white relative cursor-pointer flex items-center justify-center py-3 transition-all;
+  @apply font-Heading text-white relative cursor-pointer flex items-center justify-center py-3 transition-all;
   font-size: 16px;
   line-height: 1.31;
   background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
@@ -27,7 +27,7 @@
     top: -2px;
     left: -2px;
     z-index: -1;
-    content: '';
+    content: "";
     height: calc(100% + 4px);
     width: calc(100% + 4px);
     background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
@@ -36,7 +36,7 @@
 
   &::after {
     @apply transition-all;
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -149,7 +149,7 @@
 
 :global(.dark) {
   .baseButton {
-    background: #2C2A30;
+    background: #2c2a30;
 
     &.baseButtonDisabled {
       @apply text-white;
