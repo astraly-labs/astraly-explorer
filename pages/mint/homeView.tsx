@@ -3,6 +3,37 @@ import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "../../src/components/modal/modal";
 import BaseButton from "../../src/components/ui/buttons/BaseButton";
 import WalletIcon from "../../src/assets/icons/outline/Wallet.svg?inline";
+import Steps, { Step } from "rc-steps";
+import "rc-steps/assets/index.css";
+
+const ControlSteps = () => {
+  const [current, setCurrent] = React.useState(0);
+  return (
+    <Steps
+      current={current}
+      onChange={(val) => {
+        // eslint-disable-next-line no-console
+        console.log("Change:", val);
+        setCurrent(val);
+      }}
+      items={[
+        {
+          title: "已完成",
+        },
+        {
+          title: "进行中",
+        },
+        {
+          title: "待运行",
+          description: "Hello World!",
+        },
+        {
+          title: "待运行",
+        },
+      ]}
+    />
+  );
+};
 const HomeView = () => {
   const [isShowing, setIsShowing] = useState<boolean>(false);
   //   useEffect(() => {
@@ -28,10 +59,17 @@ const HomeView = () => {
       <div className="flex justify-center items-center w-full">
         <Modal.Frame open={isShowing} onClose={() => setIsShowing(false)}>
           <Modal.Head>
-            <div className="text-black">Hi there!</div>
+            <div className="text-black">Steps</div>
           </Modal.Head>
           <Modal.Body>
-            <div className="text-black">Hi there!</div>
+            <div className="h-[50px] w-[100px]">
+              <Steps current={1}>
+                <Step title="first" />
+                <Step title="second" className="text-black bg-black" />
+                <Step title="third" />
+                <ControlSteps />
+              </Steps>
+            </div>
           </Modal.Body>
         </Modal.Frame>
       </div>

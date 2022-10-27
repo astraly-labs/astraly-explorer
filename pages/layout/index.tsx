@@ -10,7 +10,7 @@ export default function Layout({ children }: PropsWithChildren<any>) {
     <div className="-mb-20">
       <div className="default-layout flex flex-col min-h-full relative">
         <div
-          className="noise absolute h-full w-full z-50 pointer-events-none"
+          className="noise absolute h-full w-full z-0 pointer-events-none"
           style={{
             backgroundImage: `url(${Noise.src})`,
           }}
@@ -38,7 +38,7 @@ export default function Layout({ children }: PropsWithChildren<any>) {
             </div>
           </Marquee>
         </div>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
 
         <div className="flex main-background"></div>
 
