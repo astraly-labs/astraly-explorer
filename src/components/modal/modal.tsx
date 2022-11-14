@@ -37,33 +37,31 @@ const Frame: React.FC<
   return (
     <div
       className={classNames(
-        "fixed inset-0 z-10 p-8 text-white bg-blurBg backdrop-blur-lg",
+        "fixed inset-0 z-10 text-white bg-blurBg backdrop-blur-lg",
         `${open ? "block" : "hidden"}` // control visibility via `open` attribute (or render conditionally)
       )}
       onClick={closeOnClickOutside ? onOverlayClick : undefined}
     >
       <div
-        className="relative w-full max-w-sm mx-auto mt-8 bg-white"
+        className="relative w-[45%] h-[50%] mx-auto mt-[230px] bg-white rounded-3xl"
         ref={container}
       >
         <button
-          className="absolute -top-2 -right-2 flex justify-center rounded-full h-8 w-8 bg-gray-600 cursor-pointer shadow-xl"
+          className="absolute top-2 right-2 flex justify-center rounded-full h-8 w-8 bg-gray-600 cursor-pointer shadow-xl text-primaryDark bg-white hover:text-primary "
           onClick={() => onClose()}
         >
           <span className="text-2xl leading-7 select-none">&times;</span>
         </button>
         {/* contents */}
-        <div className="overflow-hidden bg-gray-800 rounded shadow-xl">
-          {children}
-        </div>
+        <div className="overflow-hidden bg-gray-800 rounded">{children}</div>
       </div>
     </div>
   );
 };
 
 const Head: React.FC<PropsWithChildren> = ({ children }) => (
-  <div className="block p-4 bg-gray-900">
-    <h1 className="text-lg">{children}</h1>
+  <div className="block px-4 bg-gray-900 shadow-xl py-8">
+    <h1 className="text-lg ">{children}</h1>
   </div>
 );
 

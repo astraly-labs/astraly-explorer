@@ -40,6 +40,45 @@ function encodeProof(proof: Array<string>) {
 
   return [flatProof, flatProofSizesWords, flatProofSizesBytes];
 }
+export async function checkRequirements(
+  ethereum: any,
+  signer: any,
+  account: any,
+  starknetAccount: string,
+  token: string,
+  blockNumber: number,
+  storageSlot: number,
+  balance: string
+) {
+  if (!ethereum) {
+    /// https://eips.ethereum.org/EIPS/eip-1102
+    console.error("No Provider detected");
+    return;
+  }
+
+  const number = "0x" + blockNumber.toString(16);
+  const block = (await ethereum.send("eth_getBlockByNumber", [number, false]))
+    .result;
+
+  console.log(block);
+
+  // Prepare message attestation contents
+  let pos = padLeft(stripHexPrefix(account.toLowerCase()), 64);
+  pos += padLeft(stripHexPrefix(toHex(storageSlot)), 64);
+  const storageKey = sha3Raw("0x" + pos);
+  starknetAccount = stripHexPrefix(starknetAccount);
+  const stateRoot = stripHexPrefix(block.stateRoot);
+
+  const userCurrentBalance = (
+    await ethereum.send("eth_getStorageAt", [token, storageKey, number])
+  ).result;
+  /// TODO: check denomination
+  if (!toBN(userCurrentBalance).eq(toBN(balance))) {
+    console.error("User balance doesn't match");
+    return false;
+  }
+  return true;
+}
 
 export async function encodeCallArgs(
   ethereum: any,

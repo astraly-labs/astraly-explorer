@@ -1,0 +1,11 @@
+.profileTooltip {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
+  border-radius: 16px;
+  width: 320px;
+  min-height: 100px;
+  z-index: 100;
+  padding: 8px 32px 32px;
+}
