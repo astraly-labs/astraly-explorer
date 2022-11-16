@@ -1,137 +1,143 @@
 .base-text {
-  @apply text-14 text-primaryClear leading-138;
+    @apply text-14 text-primaryClear leading-138;
 
-  @screen md {
-    @apply text-16;
-  }
+    @screen md {
+        @apply text-16;
+    }
 }
 
 .medium-text {
-  @apply base-text;
-  @apply text-[16px];
-  @screen md {
-    @apply text-[18px];
-  }
+    @apply base-text;
+    @apply text-[16px];
+
+    @screen md {
+        @apply text-[18px];
+    }
 }
 
 .small-text {
-  @apply text-12 text-primaryClear leading-138;
+    @apply text-12 text-primaryClear leading-138;
 }
 
 .title {
-  // legacy
-  &--medium {
-    @apply font-heading text-primaryDark text-24;
-  }
 
-  &--big {
-    @apply text-54 font-heading uppercase text-primaryDark text-shadow;
-    text-shadow: #8f00ff -2px 2px 0;
-  }
-
-  &--small {
-    @apply font-heading text-primaryClear mb-1;
-    &.mb-4 {
-      margin-bottom: 16px;
+    // legacy
+    &--medium {
+        @apply font-heading text-primaryDark text-24;
     }
 
-    &.mb-5 {
-      margin-bottom: 20px;
+    &--big {
+        @apply text-54 font-heading uppercase text-primaryDark text-shadow;
+        text-shadow: #8f00ff -2px 2px 0;
     }
-  }
 
-  &Xs {
-    @apply font-heading text-12 text-primaryClear;
-  }
+    &--small {
+        @apply font-heading text-primaryClear mb-1;
+
+        &.mb-4 {
+            margin-bottom: 16px;
+        }
+
+        &.mb-5 {
+            margin-bottom: 20px;
+        }
+    }
+
+    &Xs {
+        @apply font-heading text-12 text-primaryClear;
+    }
 }
 
 .react-datepicker {
-  @apply base-text block font-sans shadow-purpleLight px-3 py-3 grid grid-cols-2;
-  &-popper {
-    z-index: 100;
-  }
+    @apply base-text block font-sans shadow-purpleLight px-3 py-3 grid grid-cols-2;
 
-  &__header {
-    text-align: center;
-  }
-
-  &__navigation {
-    @apply small-text;
-
-    &--previous {
-      text-align: left;
+    &-popper {
+        z-index: 100;
     }
 
-    &--next {
-      @apply col-start-2;
-      text-align: right;
-    }
-  }
-
-  &__month-container {
-    @apply col-span-2;
-  }
-
-  &__current-month {
-    @apply font-heading text-14 mt-2;
-  }
-
-  &__day-names {
-    @apply font-heading px-1 mb-1;
-    font-size: 10px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-  }
-
-  &__month {
-    @apply bg-bgPurple rounded-2xl p-3 z-0 relative;
-  }
-
-  &__week {
-    @apply small-text font-sans gap-1;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-  }
-
-  &__day {
-    @apply pt-1 pb-0.5 w-8 h-8 flex items-center justify-center;
-    &:hover {
-      @apply bg-bgPurple rounded-2xl;
-    }
-    &--today {
-      @apply bg-primaryClear text-white rounded-2xl;
+    &__header {
+        text-align: center;
     }
 
-    &--selected {
-      @apply bg-primary text-white rounded-2xl;
+    &__navigation {
+        @apply small-text;
+
+        &--previous {
+            text-align: left;
+        }
+
+        &--next {
+            @apply col-start-2;
+            text-align: right;
+        }
     }
-  }
 
-  .react-datepicker__header__dropdown--scroll {
-    @apply py-2 mb-2;
-  }
+    &__month-container {
+        @apply col-span-2;
+    }
 
-  .react-datepicker__year-dropdown {
-    @apply absolute bg-primaryClearBg border border-white rounded-2xl z-10 p-4 left-1/2 transform -translate-x-1/2;
-  }
+    &__current-month {
+        @apply font-heading text-14 mt-2;
+    }
 
-  .react-datepicker__year-read-view {
-    position: relative;
-    display: inline-block;
-  }
+    &__day-names {
+        @apply font-heading px-1 mb-1;
+        font-size: 10px;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
 
-  .react-datepicker__year-read-view--down-arrow {
-    position: absolute;
-    transform: translateX(8px) translateY(2px) rotate(135deg);
-    border-color: #9d69de;
-    border-style: solid;
-    border-width: 3px 3px 0 0;
-    content: '';
-    display: block;
-    height: 9px;
-    width: 9px;
-    left: 100%;
-  }
+    &__month {
+        @apply bg-bgPurple rounded-2xl p-3 z-0 relative;
+    }
+
+    &__week {
+        @apply small-text font-sans gap-1;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    &__day {
+        @apply pt-1 pb-0.5 w-8 h-8 flex items-center justify-center;
+
+        &:hover {
+            @apply bg-bgPurple rounded-2xl;
+        }
+
+        &--today {
+            @apply bg-primaryClear text-white rounded-2xl;
+        }
+
+        &--selected {
+            @apply bg-primary text-white rounded-2xl;
+        }
+    }
+
+    .react-datepicker__header__dropdown--scroll {
+        @apply py-2 mb-2;
+    }
+
+    .react-datepicker__year-dropdown {
+        @apply absolute bg-primaryClearBg border border-white rounded-2xl z-10 p-4 left-1/2 transform -translate-x-1/2;
+    }
+
+    .react-datepicker__year-read-view {
+        position: relative;
+        display: inline-block;
+    }
+
+    .react-datepicker__year-read-view--down-arrow {
+        position: absolute;
+        transform: translateX(8px) translateY(2px) rotate(135deg);
+        border-color: #9d69de;
+        border-style: solid;
+        border-width: 3px 3px 0 0;
+        content: '';
+        display: block;
+        height: 9px;
+        width: 9px;
+        left: 100%;
+    }
 }

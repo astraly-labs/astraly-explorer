@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import Logo from "src/assets/images/logo.svg";
 import LogoDark from "src/assets/images/logo--dark.svg";
+import HeaderMenu from "./menu";
+import ProfileButton from "../../../src/components/ui/ProfileButton/ProfileButton";
 
 const Header: React.FC = () => {
   const { account, deactivate, chainId } = useStarknetReact();
@@ -29,11 +31,14 @@ const Header: React.FC = () => {
               alt="Astraly logo"
               className="hidden dark:inline-block"
             />
-            <div className="text-24 font-bold ml-4 font-heading text-primaryDark hidden md:inline-block uppercase dark:text-whitePurple">
+            <div className="text-24 font-bold ml-4 font-Black text-primaryDark hidden md:inline-block uppercase dark:text-whitePurple">
               Astraly
             </div>
           </div>
         </Link>
+        <HeaderMenu />
+        {/* <ProfileButton /> */}
+        <div className="w-[100px]"></div>
       </div>
     </div>
   );
