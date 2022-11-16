@@ -1,5 +1,5 @@
 import { useStarknetReact } from "@web3-starknet-react/core";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useBalance, useConnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { ERC20Proof } from "@vocdoni/storage-proofs-eth";
 
@@ -62,6 +62,8 @@ export default function Mint() {
     }
   }
 
+  const Requirements = ["$SHESH token", "Minimum balance", "Snapshot date"];
+
   return (
     <div className="flex justify-center flex-col z-10">
       <div className="section fp-auto-height">
@@ -93,20 +95,20 @@ export default function Mint() {
             </div>
             <div className="flex flex-row items-center text-[25px] gap-x-[25px] pt-[50px]">
               <StarknetLogo className="h-full" />
-              <div className="text-primaryDark text-[35px]">$SHESH token</div>
-            </div>
-            <div className="flex flex-row items-center gap-x-[25px]">
-              <StarknetLogo />
               <div className="text-primaryDark text-[35px]">
-                {" "}
-                Minimum balance{" "}
+                {Requirements[0]}
               </div>
             </div>
             <div className="flex flex-row items-center gap-x-[25px]">
               <StarknetLogo />
               <div className="text-primaryDark text-[35px]">
-                {" "}
-                Snapshot date{" "}
+                {Requirements[1]}
+              </div>
+            </div>
+            <div className="flex flex-row items-center gap-x-[25px]">
+              <StarknetLogo />
+              <div className="text-primaryDark text-[35px]">
+                {Requirements[2]}
               </div>
             </div>
             <div className="pt-8 justify-center items-center self-center ">

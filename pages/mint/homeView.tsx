@@ -121,7 +121,7 @@ const HomeView = () => {
             }}
             small={true}
             className="px-10 justify-center items-center"
-            disabled={false}
+            disabled={true}
           >
             <div className="flex font-Heading text-[30px] text-center justify-center">
               Claim your SBT

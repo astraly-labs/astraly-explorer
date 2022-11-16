@@ -58,30 +58,43 @@ import HomeFull from "src/assets/icons/currentColor/Home--solid.svg?inline";
 import Launchpad from "src/assets/icons/currentColor/Rocket.svg?inline";
 import LaunchpadFull from "src/assets/icons/currentColor/RocketSolid.svg?inline";
 
-import Lock from "src/assets/icons/currentColor/Unlock.svg?inline";
+import Explore from "src/assets/icons/currentColor/Explore.svg?inline";
 import LockFull from "src/assets/icons/currentColor/Lock.svg?inline";
 
+import User from "src/assets/icons/currentColor/User.svg?inline";
 import Buy from "src/assets/icons/currentColor/Shopping-cart-outline.svg?inline";
 import BuyFull from "src/assets/icons/currentColor/Shopping-cart.svg?inline";
-
+import Award from "src/assets/icons/solid/Award.svg?inline";
 const Links = [
   {
-    text: "Home",
+    text: "Create new badges",
     iconOutline: <Home />,
-    iconSolid: <HomeFull />,
+    iconSolid: <Home />,
     href: "/",
   },
   {
-    text: "Lock",
-    iconOutline: <Lock />,
-    iconSolid: <LockFull />,
-    href: "/stake",
+    text: "Explore badges",
+    iconOutline: <Explore />,
+    iconSolid: <Explore />,
+    href: "/explore",
   },
   {
-    text: "Buy $ASTR",
+    text: "Mint badges",
     iconOutline: <Buy />,
     iconSolid: <BuyFull className="transform -translate-y-0.5" />,
-    href: "/buy",
+    href: "/mint",
+  },
+  {
+    text: "Profile",
+    iconOutline: <User />,
+    iconSolid: <User />,
+    href: "/profile",
+  },
+  {
+    text: "Score creation",
+    iconOutline: <Award />,
+    iconSolid: <Award />,
+    href: "/score",
   },
 ];
 

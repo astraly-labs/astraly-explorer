@@ -36,7 +36,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         </Link>
-        {/* <HeaderMenu /> */}
+        <HeaderMenu />
         {/* <ProfileButton /> */}
         <div className="w-[100px]"></div>
       </div>
