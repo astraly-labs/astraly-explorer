@@ -212,3 +212,6 @@ export async function encodeCallArgs(
 
   return args;
 }
+
+const generation = () => {};
+export default generation;

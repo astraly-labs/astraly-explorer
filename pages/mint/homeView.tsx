@@ -20,6 +20,7 @@ const HomeView = () => {
   const [isShowing, setIsShowing] = useState<boolean>(false);
   const { account: starknetAccount } = useStarknetReact();
   const { address: ethereumAddress, isConnected } = useAccount();
+  console.log(ethereumAddress);
   const connector = new InjectedConnector();
   const [step1, setStep1] = useState<string | undefined>(undefined);
   const [step2, setStep2] = useState<string | undefined>(undefined);

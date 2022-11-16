@@ -1,6 +1,5 @@
 import Header from "./header/index";
 import { PropsWithChildren } from "react";
-import ToastContainer from "../../src/components/ui/Toast/ToastContainer";
 import Marquee from "react-fast-marquee";
 import Warning from "src/assets/icons/currentColor/warning.svg?inline";
 import Noise from "src/assets/images/Noise.png";
@@ -38,7 +37,6 @@ export default function Layout({ children }: PropsWithChildren<any>) {
             </div>
           </Marquee>
         </div>
-        {/* <ToastContainer /> */}
 
         <div className="flex main-background"></div>
 

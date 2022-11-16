@@ -80,8 +80,8 @@ const Links = [
   },
   {
     text: "Mint badges",
-    iconOutline: <Buy />,
-    iconSolid: <BuyFull className="transform -translate-y-0.5" />,
+    iconOutline: <BuyFull />,
+    iconSolid: <BuyFull />,
     href: "/mint",
   },
   {

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.5",
     "@fullpage/react-fullpage": "^0.1.28",
     "@svgr/webpack": "^6.5.0",
     "@vocdoni/storage-proofs-eth": "^0.4.1",
