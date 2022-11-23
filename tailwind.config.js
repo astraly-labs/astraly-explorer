@@ -18,6 +18,7 @@ module.exports = {
         Light: ["Aeonik Light", ...defaultTheme.fontFamily.sans],
         Bold: ["Aeonik Bold", ...defaultTheme.fontFamily.sans],
         Black: ["Aeonik Black", ...defaultTheme.fontFamily.sans],
+        heading: ["Druk Wide Web", ...defaultTheme.fontFamily.sans],
       },
       lineHeight: {
         12: "1.2",
@@ -72,6 +73,7 @@ module.exports = {
       boxShadow: {
         purpleDark: "0px 20px 35px rgba(55, 0, 99, 0.2)",
         purpleLight: "0px 32px 48px rgba(55, 0, 99, 0.08)",
+        whiteDark: "0px 21px 21px rgba(55, 0, 99, 0.06)",
       },
       margin: {
         "-13": "-52px",

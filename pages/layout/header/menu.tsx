@@ -85,7 +85,7 @@ const Links = [
     href: "/mint",
   },
   {
-    text: "Profile",
+    text: "User Profile",
     iconOutline: <User />,
     iconSolid: <User />,
     href: "/profile",

@@ -5,27 +5,34 @@
 
 @font-face {
   font-family: "Aeonik Medium";
-  src: url("../src/fonts/Aeonik/Aeonik-Medium.otf");
+  src: url("/fonts/Aeonik/Aeonik-Medium.otf");
 }
 
 @font-face {
   font-family: "Aeonik Bold";
-  src: url("../src/fonts/Aeonik/Aeonik-Bold.otf");
+  src: url("/fonts/Aeonik/Aeonik-Bold.otf");
 }
 
 @font-face {
   font-family: "Aeonik Light";
-  src: url("../src/fonts/Aeonik/Aeonik-Light.otf");
+  src: url("/fonts/Aeonik/Aeonik-Light.otf");
 }
 
 @font-face {
   font-family: "Aeonik Regular";
-  src: url("../src/fonts/Aeonik/Aeonik-Regular.otf");
+  src: url("/fonts/Aeonik/Aeonik-Regular.otf");
 }
 
 @font-face {
   font-family: "Aeonik Black";
-  src: url("../src/fonts/Aeonik/Aeonik-Black.otf");
+  src: url("/fonts/Aeonik/Aeonik-Black.otf");
+}
+
+@font-face {
+  font-family: "Druk Wide Web";
+  src: url("/fonts/DrukWideWeb/DrukWide-Bold-Reduced.woff.ttf");
+  weight: 700;
+  style: normal;
 }
 
 .g-container {

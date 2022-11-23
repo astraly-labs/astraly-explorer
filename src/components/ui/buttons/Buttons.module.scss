@@ -1,14 +1,21 @@
+@tailwind utilities;
+
 .baseButton {
-  @apply font-Heading text-white relative cursor-pointer flex items-center justify-center py-3 transition-all;
+  @apply font-sans text-white relative cursor-pointer flex items-center justify-center py-3 transition-all;
   font-size: 16px;
   line-height: 1.31;
   background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
   box-shadow: 0 20px 35px rgba(55, 0, 99, 0.2);
   border-radius: 16px;
+  background-clip: padding-box !important;
+
+  font-weight: 700;
+  line-height: 24px;
+
   gap: 10px;
   height: 55px;
   span {
-    position: relative;
+    // position: relative;     // this was the real problem with button title 🥲
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -16,36 +23,60 @@
     top: 2px;
   }
 
-  svg,
-  img {
-    transform: translateY(-1px);
+  &.baseButtonDisabled {
+    @apply text-primaryClear;
+    opacity: 0.5;
+    background: transparent;
+    pointer-events: none;
+    border: 1px solid theme("colors.primaryClear");
+    &::before {
+      opacity: 0;
+    }
+    & svg path {
+      fill: theme("colors.primaryClear");
+    }
+  }
+
+  & .frame {
+    @apply transition-opacity;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-clip: padding-box !important;
+    border-radius: inherit;
+    background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
   }
 
   &::before {
-    @apply transition-all;
+    content: " ";
+    @apply transition-opacity;
     position: absolute;
-    top: -2px;
-    left: -2px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: -1;
-    content: "";
-    height: calc(100% + 4px);
-    width: calc(100% + 4px);
+    border-radius: inherit;
     background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
-    border-radius: 18px;
   }
 
   &::after {
-    @apply transition-all;
-    content: "";
+    content: " ";
+    @apply transition-opacity;
+    opacity: 0;
     position: absolute;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    z-index: 0;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
-    border-radius: 18px;
-    opacity: 0;
+    z-index: -1;
+
+    border-radius: inherit;
+    background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
   }
 
   &.baseButtonSmall {
@@ -58,29 +89,64 @@
     }
   }
 
-  &.baseButtonXSmall {
-    padding: 3px 16px 0;
+  &.baseButtonSmaller {
+    @apply py-2;
     font-size: 12px;
-    height: auto;
+    line-height: 14.4px;
+    height: 24px;
     border-radius: 8px;
     span {
       top: 0;
     }
   }
 
-  &.baseButtonDisabled {
-    @apply text-primary;
-    opacity: 0.5;
-    background: none;
-    pointer-events: none;
-    border: 1px solid #9f24ff;
-    &::before {
-      display: none;
+  &.baseButtonXSmall {
+    padding: 3px 16px 3;
+    font-size: 12px;
+    height: 28px;
+    border-radius: 8px;
+    span {
+      top: 0;
     }
+    &:hover {
+      background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
+    }
+  }
+
+  &.baseButtonMedium {
+    @apply h-11;
+
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  &.baseButtonXMedium {
+    @apply h-12;
+
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 19px;
   }
 
   &.baseButtonInline {
     @apply inline-flex;
+  }
+
+  &.baseButtonOutline {
+    @apply text-primary;
+    background: white;
+    border: 1px solid theme("colors.primary");
+    border-radius: 8px;
+
+    &::before,
+    &::after {
+      background: white;
+    }
+
+    &:hover {
+      @apply text-white;
+    }
   }
 
   &Icon {
@@ -98,10 +164,6 @@
   &White {
     @apply text-primary;
     background: white;
-    &::before,
-    &::after {
-      display: none;
-    }
 
     &:hover {
       @apply text-white border border-white;
@@ -111,28 +173,44 @@
 
   &Type {
     &__secondary {
-      @apply text-primary;
+      @apply text-primaryClear;
       background: white;
-      border-radius: 16px;
+
+      &::before,
+      &::after {
+        background: white;
+      }
+
+      & .frame {
+        margin: -3.5px;
+      }
+
+      & svg path {
+        fill: theme("colors.primaryClear");
+      }
+
+      &.baseButtonDarkText {
+        @apply text-primaryDark;
+        & svg path {
+          fill: theme("colors.primaryDark");
+        }
+      }
 
       &:hover {
         @apply text-white;
-        border-radius: 18px;
+        & svg path {
+          fill: white;
+        }
       }
     }
-  }
-
-  &Medium {
-    @apply text-14 h-12;
   }
 
   &:hover {
     &::after {
       opacity: 1;
     }
-
-    &::before {
-      background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
+    .frame {
+      opacity: 1;
     }
 
     .baseButtonIcon {
@@ -149,10 +227,48 @@
 
 :global(.dark) {
   .baseButton {
-    background: #2c2a30;
+    background: theme("colors.gray3");
+
+    &Type {
+      &__secondary {
+        &::before,
+        &::after {
+          background: theme("colors.gray3");
+        }
+
+        & svg:not(:global(.twitter_fill), :global(.google_fill)) {
+          path {
+            fill: theme("colors.primaryClear");
+          }
+        }
+
+        &.baseButtonDarkText {
+          @apply text-white;
+          border: 1px solid theme("colors.primaryClear");
+          & svg path {
+            fill: theme("colors.white");
+          }
+        }
+      }
+    }
 
     &.baseButtonDisabled {
       @apply text-white;
+    }
+
+    &:hover svg path {
+      fill: white;
+    }
+  }
+
+  &.baseButtonOutline {
+    color: theme("colors.white");
+    background: theme("colors.gray3");
+    border: 1px solid theme("colors.white");
+
+    &::before,
+    &::after {
+      background: theme("colors.gray3");
     }
   }
 }

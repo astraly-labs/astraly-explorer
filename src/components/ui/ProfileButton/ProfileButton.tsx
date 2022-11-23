@@ -14,14 +14,13 @@ const ProfileButton = () => {
       <div className="hidden lg:block profile-button relative ml-8">
         <BaseButton
           className="px-6"
-          medium={true}
+          white={true}
           onClick={() => setShowTooltip(true)}
         >
           <WalletIcon className={"mr-3"} />
-          {account ? truncateAddress(account.address) : "Connect"}
+          {account ? truncateAddress(account.address) : "Connect your wallet"}
           <Chevron className={"icon-right ml-3"} />
         </BaseButton>
-        {showTooltip && <ProfileTooltip close={() => setShowTooltip(false)} />}
       </div>
     </>
   );

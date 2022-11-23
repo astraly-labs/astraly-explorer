@@ -1,0 +1,36 @@
+.appHeader {
+  @apply w-screen;
+  height: 120px;
+  position: fixed;
+  z-index: 1000;
+
+  transition-property: height;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  top: 0px;
+  left: 0px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4.5px);
+  border-radius: 0px 0px 32px 32px;
+
+  &__container {
+    @apply flex justify-between w-full pb-[26px] pt-[50px] items-center;
+    height: 120px;
+  }
+
+  &__logo {
+    @apply flex items-center cursor-pointer;
+    margin-bottom: -4px;
+  }
+  &.open {
+    height: 120px + 104px;
+  }
+}
+
+:global(.dark) {
+  .appHeader {
+    background: rgba(20, 20, 20, 0.75);
+  }
+}
