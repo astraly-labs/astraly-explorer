@@ -119,6 +119,9 @@
     border-radius: 12px;
     font-size: 16px;
     line-height: 19px;
+    &:hover {
+      background: linear-gradient(360deg, #9f24ff 0%, #7e1aff 50%);
+    }
   }
 
   &.baseButtonXMedium {
