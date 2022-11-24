@@ -6,7 +6,7 @@ import Chevron from "src/assets/icons/Chevron.svg?inline";
 const Landing = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   return (
-    <div className="flex flex-col pt-[30px] gap-y-[50px] items-center ">
+    <div className="flex flex-col pt-[60px] gap-y-[50px] items-center ">
       <div className="flex font-Heading items-center justify-center text-[70px] text-primaryDark gap-x-8">
         Your gateway to explore
         <div className="text-primary">Web3</div>

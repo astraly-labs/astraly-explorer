@@ -10,15 +10,15 @@ import { useStarknetReact } from "@web3-starknet-react/core";
 import { NetworkContextName } from "../../constants";
 
 export default function Web3ReactManager({ children }: any) {
-  const { active } = useStarknetReact();
-  const {
-    active: networkActive,
-    error: networkError,
-    activate: activateNetwork,
-  } = useStarknetReact(NetworkContextName);
+  // const { active } = useStarknetReact();
+  // const {
+  //   active: networkActive,
+  //   error: networkError,
+  //   activate: activateNetwork,
+  // } = useStarknetReact(NetworkContextName);
 
   // try to eagerly connect to an injected provider, if it exists and has granted access already
-  const triedEager = useEagerConnect();
+  // const triedEager = useEagerConnect();
 
   // after eagerly trying injected, if the network connect ever isn't active or in an error state, activate itd
   // useEffect(() => {
@@ -28,7 +28,7 @@ export default function Web3ReactManager({ children }: any) {
   // }, [triedEager, networkActive, networkError, activateNetwork, active]);
 
   // when there's no account connected, react to logins (broadly speaking) on the injected provider, if it exists
-  useInactiveListener(!triedEager);
+  // useInactiveListener(!triedEager);
 
   // handle delayed loader state
   const [, setShowLoader] = useState(false);
