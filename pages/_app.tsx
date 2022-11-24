@@ -15,11 +15,15 @@ export const { chains, provider } = configureChains(
   [publicProvider()]
 );
 
+// const client = createClient({
+//   autoConnect: true,
+//   provider,
+// });
 const client = createClient({
   autoConnect: true,
+  connectors: [new InjectedConnector({ chains })],
   provider,
 });
-
 // function getLibrary(starknetProvider: Provider | undefined) {
 //   return new Provider(starknetProvider);
 // }
@@ -32,19 +36,14 @@ const client = createClient({
 // );
 
 function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
-  const { chains, provider } = configureChains(
-    [chain.goerli],
-    [
-      alchemyProvider({ apiKey: "uXpxHR8fJBH3fjLJpulhY__jXbTGNjN7" }),
-      // publicProvider(),
-    ]
-  );
+  // const { chains, provider } = configureChains(
+  //   [chain.goerli],
+  //   [
+  //     alchemyProvider({ apiKey: "uXpxHR8fJBH3fjLJpulhY__jXbTGNjN7" }),
+  //     // publicProvider(),
+  //   ]
+  // );
 
-  const client = createClient({
-    autoConnect: true,
-    connectors: [new InjectedConnector({ chains })],
-    provider,
-  });
   return (
     <WagmiConfig client={client}>
       <SessionProvider session={pageProps.session} refetchInterval={0}>

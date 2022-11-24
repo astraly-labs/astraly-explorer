@@ -13,6 +13,7 @@ const WalletModal = () => {
     connector: new InjectedConnector(),
   });
   const { data: session, status } = useSession();
+
   const handleLogin = async () => {
     try {
       const callbackUrl = "/protected";
