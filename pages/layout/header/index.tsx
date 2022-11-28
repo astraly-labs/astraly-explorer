@@ -48,7 +48,7 @@ const Header: React.FC = () => {
         >
           <WalletIcon className={"lg:mr-3 "} />
           <div className="hidden lg:flex md:flex">Connect your wallet</div>
-          <Chevron className={"icon-right lg:ml-3"} />
+          <Chevron className={"icon-right ml-3"} />
         </BaseButton>
       </label>
 
