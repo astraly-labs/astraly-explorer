@@ -84,18 +84,6 @@ const Links = [
     iconSolid: <BuyFull className="transform -translate-y-0.5" />,
     href: "/mint",
   },
-  {
-    text: "Profile",
-    iconOutline: <User />,
-    iconSolid: <User />,
-    href: "/profile",
-  },
-  {
-    text: "Score creation",
-    iconOutline: <Award />,
-    iconSolid: <Award />,
-    href: "/score",
-  },
 ];
 
 const HeaderMenu = () => {

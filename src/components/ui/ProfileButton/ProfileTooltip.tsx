@@ -17,6 +17,7 @@ import {
   useStarknetReact,
 } from "@web3-starknet-react/core";
 import BaseButton from "../../../components/ui/buttons/BaseButton";
+import { truncateAddress } from "../../../utils";
 
 const ProfileTooltip = ({ close }: { close: () => void }) => {
   const { account, deactivate, activate, connector, error } =
@@ -68,19 +69,13 @@ const ProfileTooltip = ({ close }: { close: () => void }) => {
     if (account) {
       return (
         <>
-          <Link href={"/profile"}>
-            <div>
-              <BaseButton
-                onClick={() => close()}
-                white={true}
-                className={"mb-2"}
-              >
-                <User className={"mr-1"} />
-                Your Profile
-                <Chevron className={"ml-1 icon-right"} />
-              </BaseButton>
-            </div>
-          </Link>
+          <div>
+            <BaseButton onClick={() => close()} white={true} className={"mb-2"}>
+              <User className={"mr-1"} />
+              {truncateAddress(account.address)}
+              <Chevron className={"ml-1 icon-right"} />
+            </BaseButton>
+          </div>
           <div
             className="font-heading text-12 text-center text-white cursor-pointer hover:bg-white hover:text-primary rounded-md transition-all"
             onClick={deactivate}

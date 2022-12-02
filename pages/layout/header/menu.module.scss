@@ -2,7 +2,7 @@
   position: relative;
   &:hover {
     .menuItem {
-      @apply font-normal text-primaryClear dark:text-white;
+      @apply font-normal text-primaryClear;
       .iconSolid {
         opacity: 0;
       }
@@ -11,7 +11,7 @@
       }
 
       &:hover {
-        @apply font-normal text-primary dark:text-white;
+        @apply font-normal text-primary;
         .iconSolid {
           opacity: 1;
         }
@@ -22,7 +22,6 @@
     }
   }
 }
-
 
 .menuItem {
   @apply flex items-center leading-6 transition-all text-14;
@@ -71,7 +70,7 @@
   bottom: -12px;
   left: 0;
   &::before {
-    content: '';
+    content: "";
     height: 3px;
     width: 100%;
     background: linear-gradient(360deg, #7e1aff 0%, #9f24ff 50%);
@@ -83,31 +82,29 @@
     margin-left: 4px;
   }
 }
+.appHeader {
+  @apply w-screen;
+  position: fixed;
+  z-index: 1000;
 
-:global(.dark) {
-  .menu {
+  transition-property: height;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 
-    &:hover {
-      .menuItem {
-        @apply text-white;
-        &:hover {
-          @apply text-white;
-        }
-      }
-    }
+  top: 0px;
+  left: 0px;
+
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(4.5px);
+  border-radius: 0px 0px 32px 32px;
+
+  &__container {
+    @apply flex justify-between w-full items-center;
+    height: 120px;
   }
 
-  .menuItem {
-    &Active,
-    &:hover {
-      @apply text-white;
-    }
-  }
-
-  .underline {
-    color: white;
-    &::before {
-      background: white;
-    }
+  &__logo {
+    @apply flex items-center cursor-pointer;
+    margin-bottom: -4px;
   }
 }

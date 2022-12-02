@@ -7,15 +7,15 @@ import Noise from "src/assets/images/Noise.png";
 
 export default function Layout({ children }: PropsWithChildren<any>) {
   return (
-    <div className="-mb-20">
+    <div className="">
       <div className="default-layout flex flex-col min-h-full relative">
-        <div
+        {/* <div
           className="noise absolute h-full w-full z-0 pointer-events-none"
           style={{
             backgroundImage: `url(${Noise.src})`,
           }}
-        ></div>
-        <div className="w-full overflow-hidden">
+        ></div> */}
+        {/* <div className="w-full overflow-hidden">
           <Marquee
             style={{
               background: "black",
@@ -37,16 +37,15 @@ export default function Layout({ children }: PropsWithChildren<any>) {
               />
             </div>
           </Marquee>
-        </div>
+        </div> */}
         {/* <ToastContainer /> */}
-
-        <div className="flex main-background"></div>
-
-        <Header />
+        <div className="">
+          <Header />
+        </div>
         <>{children}</>
 
-        <div className="h-20"></div>
-        <div className="mt-auto">{/* <FooterIndex /> */}</div>
+        {/* <div className="h-20"></div>
+        <div className="mt-auto"><FooterIndex /></div> */}
       </div>
     </div>
   );

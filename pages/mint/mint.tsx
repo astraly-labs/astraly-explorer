@@ -9,6 +9,7 @@ import StarknetLogo from "../../src/assets/images/Starknet-logo-white.svg?inline
 import { motion } from "framer-motion";
 import HomeView from "./homeView";
 import styles from "./mint.module.scss";
+import FaqBlock from "../../src/components/Block/FaqBlock/FaqBlock";
 export default function Mint() {
   const { account: starknetAccount } = useStarknetReact();
   const { address: ethereumAddress, isConnected } = useAccount();
@@ -59,70 +60,61 @@ export default function Mint() {
   const Requirements = ["$SHESH token", "Minimum balance", "Snapshot date"];
 
   return (
-    // <div className="container">
-    //   <div className="section">
-    //     <div className=" flex flex-col items-center justify-center  pt-20 pb-[350px]">
-    //       <div className=" font-Black ui-t-primary text-[150px] font-black  justify-end text-end leading-none ">
-    //         <Number n={100} />
-    //       </div>
-
-    //       <motion.h1
-    //         initial={{ opacity: 0, y: -100 }}
-    //         animate={{ opacity: 1, y: 0 }}
-    //         transition={{ duration: 1 }}
-    //         className=" font-Black ui-t-dark text-[90px] font-black justify-center text-center leading-none"
-    //       >
-    //         Badges issued
-    //       </motion.h1>
-    //     </div>
-    //   </div>
-    //   <div className="section  ">
-    //     <div className=" flex flex-wrap flex-row justify-start items-center pt-8 pl-[100px] gap-x-[100px] z-100">
-    //       <img
-    //         src="https://astraly-bucket.fra1.digitaloceanspaces.com/cover.png"
-    //         className="w-[500px] h-[500px] rounded-[50px] z-10"
-    //       ></img>
-    //       <div className="verticalSeparator h-[500px] border-6 border-gray border hidden lg:flex  "></div>
-    //       <div className="flex-col flex gap-6">
-    //         <div className="h-full justify-center items-start font-Heading  text-center text-[60px] text-primary pb-8">
-    //           Required conditions
-    //         </div>
-    //         <div className="flex flex-row items-center text-[25px] gap-x-[25px] pt-[50px]">
-    //           <StarknetLogo className="h-full" />
-    //           <div className="text-primaryDark text-[35px]">
-    //             {Requirements[0]}
-    //           </div>
-    //         </div>
-    //         <div className="flex flex-row items-center gap-x-[25px]">
-    //           <StarknetLogo />
-    //           <div className="text-primaryDark text-[35px]">
-    //             {Requirements[1]}
-    //           </div>
-    //         </div>
-    //         <div className="flex flex-row items-center gap-x-[25px]">
-    //           <StarknetLogo />
-    //           <div className="text-primaryDark text-[35px]">
-    //             {Requirements[2]}
-    //           </div>
-    //         </div>
-    //         <div className="pt-8 justify-center items-center self-center ">
-    //           <HomeView />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="section">Third page</div>
-    // </div>
     <div className={styles.container}>
-      <section className={styles.one}>
-        <h1>First section</h1>
-      </section>
-      <section className={styles.second}>
-        <h1>Second section</h1>
-      </section>
-      <section className={styles.third}>
-        <h1>First section</h1>
-      </section>
+      <div className={styles.section} style={{ backgroundColor: "purple" }}>
+        <div className=" flex flex-wrap flex-row justify-start items-centerpt-8 pl-[100px] gap-x-[100px] z-100">
+          <img
+            src="https://astraly-bucket.fra1.digitaloceanspaces.com/cover.png"
+            className="w-[500px] h-[500px] rounded-[50px] z-10"
+          ></img>
+          <div className="verticalSeparator h-[500px] border-6 border-gray border hidden lg:flex  "></div>
+          <div className="flex-col flex gap-6">
+            <div className="h-full justify-center items-start font-Heading  text-center text-[60px] text-primary pb-8">
+              Required conditions
+            </div>
+            <div className="flex flex-row items-center text-[25px] gap-x-[25px] pt-[50px]">
+              <StarknetLogo className="h-full" />
+              <div className="text-primaryDark text-[35px]">
+                {Requirements[0]}
+              </div>
+            </div>
+            <div className="flex flex-row items-center gap-x-[25px]">
+              <StarknetLogo />
+              <div className="text-primaryDark text-[35px]">
+                {Requirements[1]}
+              </div>
+            </div>
+            <div className="flex flex-row items-center gap-x-[25px]">
+              <StarknetLogo />
+              <div className="text-primaryDark text-[35px]">
+                {Requirements[2]}
+              </div>
+            </div>
+            <div className="pt-8 justify-center items-center self-center ">
+              <HomeView />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.section} style={{ backgroundColor: "yellow" }}>
+        <div className=" flex flex-col items-center justify-center ">
+          <div className=" font-Black ui-t-primary text-[150px] font-black  justify-end text-end leading-none ">
+            <Number n={100} />
+          </div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className=" font-Black ui-t-dark text-[90px] font-black justify-center text-center leading-none"
+          >
+            Badges issued
+          </motion.h1>
+        </div>
+      </div>
+      <div className={styles.section} style={{ backgroundColor: "#1234" }}>
+        <FaqBlock />
+      </div>
     </div>
   );
 }
