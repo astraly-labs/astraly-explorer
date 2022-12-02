@@ -1,13 +1,15 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
-import { Provider as ReduxProvider } from "react-redux";
+
 import { StarknetReactProvider } from "@web3-starknet-react/core";
+import { Session } from "next-auth";
 import { Provider } from "starknet";
 import dynamic from "next/dynamic";
 import Layout from "./layout";
-import { useStore } from "../src/stores/reduxStore";
+
 import { configureChains, chain, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+import { SessionProvider } from "next-auth/react";
 
 function getLibrary(provider: Provider | undefined) {
   return new Provider(provider);
@@ -19,31 +21,39 @@ const Web3ReactProviderDefault = dynamic(
     ssr: false,
   }
 );
+export const { chains, provider } = configureChains(
+  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [publicProvider()]
+);
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const store = useStore(pageProps.initialReduxState);
+const client = createClient({
+  autoConnect: true,
+  provider,
+});
 
-  const { provider, webSocketProvider } = configureChains(
-    [chain.goerli],
-    [publicProvider()]
-  );
-  const client = createClient({
-    autoConnect: true,
-    provider,
-    webSocketProvider,
-  });
+function MyApp({
+  Component,
+  pageProps,
+}: AppProps<{
+  session: Session;
+}>) {
+  // const client = createClient({
+  //   autoConnect: true,
+  //   provider,
+  //   webSocketProvider,
+  // });
   return (
-    <ReduxProvider store={store}>
-      <StarknetReactProvider getLibrary={getLibrary}>
-        <Web3ReactProviderDefault getLibrary={getLibrary}>
-          <Layout>
-            <WagmiConfig client={client}>
+    <StarknetReactProvider getLibrary={getLibrary}>
+      <Web3ReactProviderDefault getLibrary={getLibrary}>
+        <Layout>
+          <WagmiConfig client={client}>
+            <SessionProvider session={pageProps.session} refetchInterval={0}>
               <Component {...pageProps} />
-            </WagmiConfig>
-          </Layout>
-        </Web3ReactProviderDefault>
-      </StarknetReactProvider>
-    </ReduxProvider>
+            </SessionProvider>
+          </WagmiConfig>
+        </Layout>
+      </Web3ReactProviderDefault>
+    </StarknetReactProvider>
   );
 }
 

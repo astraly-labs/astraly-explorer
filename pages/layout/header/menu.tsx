@@ -67,7 +67,7 @@ import BuyFull from "src/assets/icons/currentColor/Shopping-cart.svg?inline";
 import Award from "src/assets/icons/solid/Award.svg?inline";
 const Links = [
   {
-    text: "Create new badges",
+    text: "Mint badges",
     iconOutline: <Home />,
     iconSolid: <Home />,
     href: "/",
@@ -79,10 +79,10 @@ const Links = [
     href: "/explore",
   },
   {
-    text: "Mint badges",
+    text: "Create new badges",
     iconOutline: <Buy />,
     iconSolid: <BuyFull className="transform -translate-y-0.5" />,
-    href: "/mint",
+    href: "/create",
   },
 ];
 

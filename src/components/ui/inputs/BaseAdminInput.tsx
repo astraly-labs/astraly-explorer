@@ -1,18 +1,20 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef, useCallback } from "react";
 
-import AdminInputGroup from './AdminInputGroup'
+import AdminInputGroup from "./AdminInputGroup";
 
-const BaseInput: React.FC<{
-  label: string
-  value: string
-  onChange: React.ChangeEventHandler<HTMLInputElement>
-  max?: number
-}> = ({ label, value, onChange, max, children }) => {
-  const input = useRef<HTMLInputElement>(null)
+const BaseInput: React.FC<
+  React.PropsWithChildren<{
+    label: string;
+    value: string;
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
+    max?: number;
+  }>
+> = ({ label, value, onChange, max, children }) => {
+  const input = useRef<HTMLInputElement>(null);
 
   const handleClick = useCallback(() => {
-    input.current?.focus()
-  }, [input.current])
+    input.current?.focus();
+  }, [input.current]);
 
   return (
     <AdminInputGroup left={<span>{label}</span>} onClick={handleClick}>
@@ -26,7 +28,7 @@ const BaseInput: React.FC<{
         />
       </div>
     </AdminInputGroup>
-  )
-}
+  );
+};
 
-export default BaseInput
+export default BaseInput;
