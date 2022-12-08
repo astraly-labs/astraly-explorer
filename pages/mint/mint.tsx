@@ -61,6 +61,11 @@ export default function Mint() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.section} style={{ backgroundColor: "gray" }}>
+        <div className="flex font-Heading text-center text-[60px] text-primary ">
+          Claim your Badge
+        </div>
+      </div>
       <div className={styles.section} style={{ backgroundColor: "purple" }}>
         <div className=" flex flex-wrap flex-row justify-start items-centerpt-8 pl-[100px] gap-x-[100px] z-100">
           <img
