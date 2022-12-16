@@ -44,9 +44,6 @@ const Create = () => {
   const creationTreatment = async () => {
     const ipfsLink = await sendFileToIPFS();
     var metadata_obj = JSON.stringify({
-      pinataOptions: {
-        cidVersion: 1,
-      },
       name: badgeName,
       description: badgeDescription,
       image: ipfsLink,
@@ -65,7 +62,8 @@ const Create = () => {
       data: metadata_obj,
     };
     const res = await axios(config);
-    console.log(res.data);
+    const metaLink = `ipfs://${res.data}`;
+    console.log(metaLink);
   };
   return (
     <>
