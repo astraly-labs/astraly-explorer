@@ -39,9 +39,7 @@ export default function Layout({ children }: PropsWithChildren<any>) {
           </Marquee>
         </div> */}
         {/* <ToastContainer /> */}
-        <div className="">
-          <Header />
-        </div>
+        <div className="">{/* <Header /> */}</div>
         <>{children}</>
 
         {/* <div className="h-20"></div>

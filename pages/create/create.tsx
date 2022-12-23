@@ -13,7 +13,6 @@ const Create = () => {
   const [badgeDescription, setBadgeDescription] = useState<string>("");
   const [badgeExtURL, setBadgeExtURL] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<any>(null);
-
   const sendFileToIPFS = async () => {
     if (selectedFile) {
       try {

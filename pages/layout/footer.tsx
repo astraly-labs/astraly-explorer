@@ -7,13 +7,12 @@ import {
   WhitepaperLink,
   TelegramLink,
 } from "../../src/constants";
-import TwitterIcon from "src/assets/icons/Twitter.svg";
-import TelegramIcon from "src/assets/icons/Telegram.svg";
-import GithubIcon from "src/assets/icons/Github.svg";
-import DiscordIcon from "src/assets/icons/Discord.svg";
-import DocumentIcon from "src/assets/icons/Document.svg";
-import FolderIcon from "src/assets/icons/Folder.svg";
-import Logo from "src/assets/images/logo-text.svg";
+import TwitterIcon from "src/assets/icons/currentColor/Twitter.svg";
+import TelegramIcon from "src/assets/icons/currentColor/Telegram.svg";
+import GithubIcon from "src/assets/icons/currentColor/Github.svg";
+import DiscordIcon from "src/assets/icons/currentColor/Discord.svg";
+
+import Logo from "src/assets/images/currentColor/logo-text.svg";
 import Link from "next/link";
 
 const Item = ({
@@ -40,14 +39,12 @@ const Item = ({
   );
 };
 
-const Footer = () => {
+export const Footer = () => {
   const Links = [
     [TwitterIcon, "Twitter", TwitterLink],
     [DiscordIcon, "Discord", DiscordLink],
-    [DocumentIcon, "Whitepaper", WhitepaperLink],
     [GithubIcon, "Github", GitHubLink],
     [TelegramIcon, "Telegram", TelegramLink],
-    [FolderIcon, "Docs", DocsLink],
   ];
   return (
     <>
@@ -67,9 +64,9 @@ const Footer = () => {
               </a>
             </p>
 
-            <Link href={"/"}>
+            {/* <Link href={"/"}>
               <img src={Logo} alt={"Astraly"} />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

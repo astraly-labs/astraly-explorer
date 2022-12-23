@@ -18,6 +18,8 @@ module.exports = {
         Light: ["Aeonik Light", ...defaultTheme.fontFamily.sans],
         Bold: ["Aeonik Bold", ...defaultTheme.fontFamily.sans],
         Black: ["Aeonik Black", ...defaultTheme.fontFamily.sans],
+        lightLato: ["Lato Light", ...defaultTheme.fontFamily.sans],
+        boldLato: ["Lato Bold", ...defaultTheme.fontFamily.sans],
       },
       lineHeight: {
         12: "1.2",
@@ -54,6 +56,7 @@ module.exports = {
         bgLinearGradient:
           "linear-gradient(180deg, #FFFFFF 0%, rgba(250, 243, 255, 0)",
         blurBg: "rgba(0, 0, 0, 0.4)",
+        whiteLinearGradient: "-webkit-linear-gradient(blue, yellow)",
       },
       maxWidth: {
         "558px": "558px",
@@ -76,6 +79,15 @@ module.exports = {
       margin: {
         "-13": "-52px",
         "-100": "-400px",
+      },
+      keyframes: {
+        fadeIn: {
+          from: "opacity-0 ",
+          to: "opacity-1",
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 5s ease-in-out infinite",
       },
     },
   },

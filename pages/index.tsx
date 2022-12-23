@@ -1,6 +1,7 @@
 import { useStarknetReact } from "@web3-starknet-react/core";
 import type { NextPage } from "next";
 import { useEffect } from "react";
+import Landing from "./landing/landing";
 
 import Mint from "./mint/mint";
 
@@ -11,7 +12,7 @@ const Astraly: NextPage = () => {
     console.log(account);
   }, [account]);
 
-  return <Mint></Mint>;
+  return <Landing></Landing>;
 };
 
 export default Astraly;

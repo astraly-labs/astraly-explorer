@@ -8,21 +8,21 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/bee.js',
-        destination: 'https://cdn.splitbee.io/sb.js',
+        source: "/bee.js",
+        destination: "https://cdn.splitbee.io/sb.js",
       },
       {
-        source: '/_hive/:slug',
-        destination: 'https://hive.splitbee.io/:slug',
+        source: "/_hive/:slug",
+        destination: "https://hive.splitbee.io/:slug",
       },
     ];
   },
   webpack: function (config) {
     const fileLoader = {
-      loader: 'file-loader',
+      loader: "file-loader",
       options: {
-        outputPath: '../public/assets/',
-        publicPath: '/assets/',
+        outputPath: "../public/assets/",
+        publicPath: "/assets/",
       },
     };
 
@@ -31,13 +31,14 @@ const nextConfig = {
       oneOf: [
         {
           resourceQuery: /inline/,
-          loader: '@svgr/webpack',
+          loader: "@svgr/webpack",
         },
         {
           ...fileLoader,
         },
       ],
     });
+
     return config;
   },
 };

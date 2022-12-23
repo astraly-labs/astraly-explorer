@@ -28,6 +28,15 @@
   src: url("../src/fonts/Aeonik/Aeonik-Black.otf");
 }
 
+@font-face {
+  font-family: "Lato Light";
+  src: url("../src/fonts/Lato/Lato-Light.ttf");
+}
+
+@font-face {
+  font-family: "Lato Bold";
+  src: url("../src/fonts/Lato/Lato-Bold.ttf");
+}
 .g-container {
   @screen md {
     @apply px-6;

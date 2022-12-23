@@ -40,12 +40,12 @@ function Siwe() {
     }
   };
 
-  useEffect(() => {
-    console.log(isConnected);
-    if (isConnected && !session) {
-      handleLogin();
-    }
-  }, [isConnected]);
+  // useEffect(() => {
+  //   console.log(isConnected);
+  //   if (isConnected && !session) {
+  //     handleLogin();
+  //   }
+  // }, [isConnected]);
 
   return (
     <div>
